@@ -13,6 +13,7 @@
     <script src="js/jq.js"></script>   
     <script src="https://maps.googleapis.com/maps/api/js"></script> 
     <script src="js/googleMapApi.js"></script>
+    <script src="js/script.js"></script>   
 </head>
 <body>
     <header>
@@ -36,7 +37,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="row">
-                    <form>
+                    <form id="registerForm" method="post">
                         <fieldset class="col-xs-12">
                             <div class="radio">
                                 <label>
@@ -72,166 +73,40 @@
                         </fieldset>
                         <fieldset class="col-sm-6">
                             <h4>Umiejętności</h4>
-                            <div class="row">
+                            <div class="row skills">
                                 <div class="col-sm-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"> Java
+                                            <input type="checkbox" value="Java"> Java
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"> Python
+                                            <input type="checkbox" value="Python"> Python
                                         </label>
                                     </div>
                                 </div> 
                                 <div class="col-sm-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"> Grafika 2D
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Grafika 3D
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> C
+                                            <input type="checkbox" value="Grafika 2D"> Grafika 2D
                                         </label>
                                     </div>
                                 </div>  
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Umiejętność
-                                        </label>
-                                    </div>
-                                </div>   
                             </div> <!-- /.row -->                            
                         </fieldset>
-                        <fieldset class="col-xs-12">
+                        <fieldset class="col-xs-12 info">
                             <h4>Dodatkowe informacje</h4>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> Chcę zdalnie pomagać różnym Dojo z całej Polski
+                                    <input type="checkbox" value="remote"> Chcę zdalnie pomagać różnym Dojo z całej Polski
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> Mam profesjonalne doświadczenie w pracy z dziećmi lub młodzieżą
+                                    <input type="checkbox" value="experience"> Mam profesjonalne doświadczenie w pracy z dziećmi lub młodzieżą
                                 </label>
                             </div>                        
                         </fieldset>
