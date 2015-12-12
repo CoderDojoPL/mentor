@@ -1,0 +1,71 @@
+header {
+  width: 100%;
+  background: darkgray;
+  height: 60px;
+}
+
+h1 {
+  display: none;
+}
+
+.logo {
+  float: left;
+  height: 50px;
+  padding: 5px;
+}
+.logo img {
+  display: block;
+  margin: 0 auto;
+  height: 50px;
+  float: left;
+}
+.logo h2 {
+  float: left;
+  line-height: 50px;
+  margin: 0 0 0 10px;
+  font-size: 24px;
+}
+
+form h4 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: .25em;
+}
+
+.messages-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+.messages-header .new {
+  background: orange;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.message {
+  margin-bottom: 50px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.message h5 {
+  display: inline-block;
+  margin: 0;
+}
+.message h5 + h5 {
+  margin-left: 20px;
+}
+.message h4 {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+.message p {
+  margin: 0;
+}
+
+.message-new {
+  background: #ffd280;
+}
+.message-new h4 {
+  border-color: black;
+}
