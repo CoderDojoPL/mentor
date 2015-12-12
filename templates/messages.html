@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+</head>
+<body>
+<div id="messages">
+    {% for message in messages %}
+        <div class="message">
+            <div id = "title">{{ message['title'] }}</div>
+            <div id = "content">{{ message['content'] }}</div>
+            <button src="{{ message['button'] }}">Send message</button>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

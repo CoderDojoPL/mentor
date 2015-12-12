@@ -6,9 +6,8 @@ from flask import Flask, render_template, request, redirect, session, g
 from uuid import uuid4
 from werkzeug.debug import DebuggedApplication
 
-# DATABASE = '/home/matlaczm/urlshortener/database/urls'
 DATABASE = './database/urls'
-app_url = '/matlaczm/short'
+app_url = ''
 app = Flask(__name__)
 app.secret_key = 'M[]@#_R CI$*(_N$#*(M'
 
@@ -130,6 +129,14 @@ def url_shortened_redirect(url_shortened):
     if url_scheme[0] == '':
         url = 'http://' + url
     return redirect(url, code=302)
+
+@app.route(app_url + '/messages', methods=['GET', 'POST'])
+def messages():
+    messages = []
+    messages.append({'title':'first message','content':'this is content','button':'http://google.pl'})
+    for message in messages:
+        print(message['title'])
+    return render_template('messages.html', messages=messages)
 
 
 if __name__ == '__main__':
