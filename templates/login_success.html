@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <title>Zalogowanie pomyślne</title>
+    <meta charset="utf-8"/>
+
+</head>
+<body>
+<p>Witaj {{ username }}</p>
+
+<form action='{{ app_url }}/shorten' method='POST'>
+    <p>Wprowadź link do skrócenia:</p>
+    <input type='text' name='url' placeholder='http://www.google.com'/>
+    <input type='submit' value='Skróć!'/>
+</form>
+{% for url, name in data %}
+<li><p>{{name}}</p>
+    <p>{{url}}</p></li>
+{% endfor %}
+<a href="{{app_url + '/logout'}}" ><button>logout</button></a>
+</body>
+</html>
