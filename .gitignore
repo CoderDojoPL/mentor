@@ -1,5 +1,12 @@
 *.iml
 idea/*
+front/.sass-cache
+node_modules
+resource
+src
+static
+gulpfile.js
+package.json
 *.idea
 *.idea/
 map.html
