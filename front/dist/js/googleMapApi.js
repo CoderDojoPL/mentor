@@ -6,10 +6,12 @@
 var polandLatLng = {lat: 51.919438, lng: 19.145135999};
 var clickedLat = 0.0;
 var clickedLng = 0.0;
+var map;
 
 function initMapCenter(position) {
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var map = new google.maps.Map(document.getElementById('map'), {
+    console.log(latlng);
+    map = new google.maps.Map(document.getElementById('map'), {
         center: latlng,
         scrollwheel: true,
         zoom: 10
@@ -33,7 +35,6 @@ function initMapPoland() {
 
 function createMarkerYourPosition(position) {
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var map = document.getElementById('map');
     var marker = new google.maps.Marker({
         setMap: map,
         position: latlng,
