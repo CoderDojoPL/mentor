@@ -7,15 +7,14 @@ var polandLatLng = {lat: 51.919438, lng: 19.145135999};
 var clickedLat = 0.0;
 var clickedLng = 0.0;
 
-function initMapCenter(userLat, userLng) {
-    var centerLatLgn = {lat: userLat, lng: userLng};
-
+function initMapCenter(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: centerLatLgn,
+        center: latlng,
         scrollwheel: true,
-        zoom: 4
+        zoom: 10
     });
-    google.maps.event.addListener(map, 'click', getCoords(event));
+    createMarkerYourPosition(position);
 }
 
 function getCoords(event) {
@@ -27,44 +26,25 @@ function initMapPoland() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: polandLatLng,
         scrollwheel: true,
-        zoom: 4
+        zoom: 6
     });
     google.maps.event.addListener(map, 'click', getCoords(event));
 }
 
-function createMarker(map, lat, lng) {
-    var latLng = {lat: lat, lng: lng};
+function createMarkerYourPosition(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var map = document.getElementById('map');
     var marker = new google.maps.Marker({
         map: map,
-        position: latLng,
-        title: 'CoderDojo Mentors'
-    });
-}
-
-function addEventListenerToMarker(marker) {
-    google.maps.event.addListener(marker, "click", function (event) {
-        var latitude = event.latLng.lat();
-        var longitude = event.latLng.lng();
-        console.log( latitude + ', ' + longitude );
-
-        radius = new google.maps.Circle({map: map,
-            radius: 100,
-            center: event.latLng,
-            fillColor: '#777',
-            fillOpacity: 0.1,
-            strokeColor: '#AA0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            draggable: true,    // Dragable
-            editable: true
-        });
+        position: latlng,
+        title: 'Twoje położenie'
     });
 }
 
 $(function() {
-/*    if (position.coords.latitude && position.coords.longitude) {
-        initMapCenter(position.coords.latitude, position.coords.longitude);
-    } else {*/
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(initMapCenter);
+    } else {
         initMapPoland();
-/*    }*/
+    }
 });
