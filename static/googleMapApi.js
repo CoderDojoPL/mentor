@@ -14,8 +14,7 @@ function initMapCenter(position) {
         scrollwheel: true,
         zoom: 10
     });
-    google.maps.event.addListener(map, 'click', getCoords(event));
-    createMarker(map, latlng, "Twoje położenie");
+    createMarkerYourPosition(position);
 }
 
 function getCoords(event) {
@@ -32,37 +31,19 @@ function initMapPoland() {
     google.maps.event.addListener(map, 'click', getCoords(event));
 }
 
-function createMarker(map, latlng, markerTitle) {
+function createMarkerYourPosition(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var map = document.getElementById('map');
     var marker = new google.maps.Marker({
         map: map,
         position: latlng,
-        title: markerTitle
-    });
-}
-
-function addEventListenerToMarker(marker) {
-    google.maps.event.addListener(marker, "click", function (event) {
-        var latitude = event.latLng.lat();
-        var longitude = event.latLng.lng();
-        console.log( latitude + ', ' + longitude );
-
-        radius = new google.maps.Circle({map: map,
-            radius: 100,
-            center: event.latLng,
-            fillColor: '#777',
-            fillOpacity: 0.1,
-            strokeColor: '#AA0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            draggable: true,
-            editable: true
-        });
+        title: 'Twoje położenie'
     });
 }
 
 $(function() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(initMapCenter)
+        navigator.geolocation.getCurrentPosition(initMapCenter);
     } else {
         initMapPoland();
     }
