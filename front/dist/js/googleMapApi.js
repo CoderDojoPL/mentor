@@ -35,7 +35,7 @@ function createMarkerYourPosition(position) {
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     var map = document.getElementById('map');
     var marker = new google.maps.Marker({
-        map: map,
+        setMap: map,
         position: latlng,
         title: 'Twoje położenie'
     });
