@@ -31,6 +31,10 @@ form h4 {
   padding-bottom: .25em;
 }
 
+#map {
+  height: 400px;
+}
+
 .messages-header {
   margin-bottom: 25px;
   text-align: center;
