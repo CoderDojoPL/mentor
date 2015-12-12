@@ -7,15 +7,15 @@ var polandLatLng = {lat: 51.919438, lng: 19.145135999};
 var clickedLat = 0.0;
 var clickedLng = 0.0;
 
-function initMapCenter(userLat, userLng) {
-    var centerLatLgn = {lat: userLat, lng: userLng};
-
+function initMapCenter(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: centerLatLgn,
+        center: latlng,
         scrollwheel: true,
-        zoom: 4
+        zoom: 10
     });
     google.maps.event.addListener(map, 'click', getCoords(event));
+    createMarker(map, latlng, "Twoje położenie");
 }
 
 function getCoords(event) {
@@ -27,17 +27,16 @@ function initMapPoland() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: polandLatLng,
         scrollwheel: true,
-        zoom: 4
+        zoom: 6
     });
     google.maps.event.addListener(map, 'click', getCoords(event));
 }
 
-function createMarker(map, lat, lng) {
-    var latLng = {lat: lat, lng: lng};
+function createMarker(map, latlng, markerTitle) {
     var marker = new google.maps.Marker({
         map: map,
-        position: latLng,
-        title: 'CoderDojo Mentors'
+        position: latlng,
+        title: markerTitle
     });
 }
 
@@ -55,15 +54,15 @@ function addEventListenerToMarker(marker) {
             strokeColor: '#AA0000',
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            draggable: true,    // Dragable
+            draggable: true,
             editable: true
         });
     });
 }
 
 $(function() {
-    if (position.coords.latitude && position.coords.longitude) {
-        initMapCenter(position.coords.latitude, position.coords.longitude);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(initMapCenter)
     } else {
         initMapPoland();
     }
