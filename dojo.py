@@ -6,8 +6,6 @@ from werkzeug.debug import DebuggedApplication
 import rejestracjaController
 import logowanieController
 
-
-DATABASE = './database/urls'
 app_url = ''
 app = Flask(__name__)
 app.secret_key = 'M[]@#_R CI$*(_N$#*(M'
@@ -57,6 +55,7 @@ def register():
         return render_template('index.html', app_url=app_url)
     if request.method == 'POST':
         read = dict(request.form)
+        print(read)
         rejestracjaController.rejestruj_uzytkownika_controller(read)
         return redirect(app_url + '/login', code=302)
 
