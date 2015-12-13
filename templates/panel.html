@@ -6,15 +6,15 @@
 
     <title>CoderDojo - panel mentora</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+    <link rel="stylesheet" href="css/main.css"> 
 </head>
 <body>
     <header>
         <div class="logo">
             <h1>CoderDojo</h1>
-            <img src="{{ url_for('static', filename='cd-logo.png')}}" alt="">
+            <img src="img/cd-logo.png" alt="">
             <h2>Strefa mentora</h2>
         </div>
     </header>   
@@ -92,13 +92,26 @@
                 <p><b>Login:</b> jankowalski</p>
                 <p><b>Miejscowość:</b> Warszawa</p>
                 <p>Jesteś przypisany do Dojo!</p>
-                <p>Nie jesteś przypisany do Dojo.<br>Liczba potencjalnych mentorów w&nbsp;Twojej okolicy: 37248891842</p>
+                <p>Nie jesteś przypisany do Dojo.<br>Liczba potencjalnych mentorów w&nbsp;Twojej okolicy: 37248891842</p>   
                 <a href="http://localhost:4000/logout" class="btn btn-default">Wyloguj</a>
+
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Miejscowość</th>
+                        <th>Potencjalni mentorzy</th>
+                    </tr>
+                    {{% for place in places %}}
+                    <tr>
+                        <td>place['Miejscowosc']</td>
+                        <td>place['liczba_uspionych']</td>
+                    </tr>
+                    {{% endfor %}}
+                </table>
             </div>
         </div> <!-- /.row -->
-    </div>
-    <script src="{{ url_for('static', filename='jq.js')}}"></script>
-    <script src="{{ url_for('static', filename='bootstrap.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='script.js')}}"></script>
+    </div>    
+    <script src="js/jq.js"></script>  
+    <script src="js/bootstrap.min.js"></script>
+    <script src="../../static/script.js"></script>
 </body>
 </html>

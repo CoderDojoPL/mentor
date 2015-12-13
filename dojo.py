@@ -5,6 +5,7 @@ from uuid import uuid4
 from werkzeug.debug import DebuggedApplication
 import rejestracjaController
 import logowanieController
+import userDAO
 
 app_url = ''
 app = Flask(__name__)
@@ -32,7 +33,7 @@ def login():
             print "udalo sie zalogowac"
             session['uid'] = uuid4()
             session['username'] = login
-            return redirect('/panel', code=300)
+            return redirect('/panel', code=302)
                 #render_template('panel.html', username=login, app_url=app_url)
         else:
             print "nie udalo sie"
@@ -42,7 +43,8 @@ def login():
 @app.route(app_url + '/panel', methods=['GET', 'POST'])
 def panel():
     if request.method == "GET":
-        return render_template('panel.html', username=login, app_url=app_url)
+        places = userDAO.find_miejscowosci_and_liczba_usbionych()
+        return render_template('panel.html', username=login, app_url=app_url, places = places)
     if request.method == "POST":
         return render_template('panel.html', username=login, app_url=app_url)
 
