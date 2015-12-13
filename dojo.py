@@ -3,6 +3,8 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, session, g
 from uuid import uuid4
 from werkzeug.debug import DebuggedApplication
+import rejestracjaController
+import logowanieController
 
 
 DATABASE = './database/urls'
@@ -18,10 +20,7 @@ def index():
     if 'username' not in session:
         return redirect(app_url + '/login', code=302)
     username = session['username']
-    data = None
-    with connect_db() as db:
-        data = print_urls(db,username=username)
-    return render_template('login_success.html', username=username, app_url=app_url, data=data)
+    return render_template('login_success.html', username=username, app_url=app_url)
 
 
 @app.route(app_url + '/login', methods=['GET', 'POST'])
@@ -29,8 +28,10 @@ def login():
     if request.method == 'GET':
         return render_template('index.html', app_url = app_url)
     if request.method == 'POST':
-        username = request.form.get('username')
+        login = request.form.get('login')
         password = request.form.get('password')
+        if logowanieController.logowanie_controller(login, password):
+
         with connect_db() as db:
             get_pass = """SELECT password FROM users WHERE username == '%s'""" % username
             passwd = db.execute(get_pass)
@@ -41,7 +42,7 @@ def login():
                     data = print_urls(db,username=username)
                     return render_template('login_success.html', username=username, app_url=app_url, data=data)
             except TypeError:
-                return render_template('login_failure.html', app_url=app_url)
+                return render_template('login.html', app_url=app_url)
 
 
 @app.route(app_url + '/logout', methods=['GET', 'POST'])
@@ -57,7 +58,7 @@ def register():
         return render_template('register_form.html', app_url=app_url)
     if request.method == 'POST':
         read = dict(request.form)
-        rejestruj_uzytkownika_kontroler(read)
+        rejestracjaController.rejestruj_uzytkownika_controller(read)
         return redirect(app_url + '/login', code=302)
 
 
