@@ -23,6 +23,8 @@ $(document).ready(function() {
 		output.push(info);
 
 		console.log(output);
+
+		$.post('/register', output);
 	});
 
 /*	$("#loginForm").submit(function (event) {
