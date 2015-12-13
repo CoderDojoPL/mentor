@@ -23,6 +23,13 @@ $(document).ready(function() {
 		output.push(info);
 
 		console.log(output);
-		$.post('0.0.0.0:4000/register',output);
+	});
+
+	$("#loginForm").submit(function (event) {
+		event.preventDefault();
+
+		var output = $(this).serializeArray();
+
+		console.log(output);
 	});
 });
