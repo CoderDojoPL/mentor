@@ -115,3 +115,8 @@ form h4 {
 .profile-data {
   padding-top: 50px;
 }
+
+th {
+  background: #333;
+  color: #fff;
+}
