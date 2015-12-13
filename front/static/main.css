@@ -1,0 +1,117 @@
+header {
+  width: 100%;
+  background: #333;
+  height: 60px;
+  color: #fff;
+}
+
+h1 {
+  display: none;
+}
+
+.logo {
+  float: left;
+  height: 50px;
+  padding: 5px;
+}
+.logo img {
+  display: block;
+  margin: 0 auto;
+  height: 50px;
+  float: left;
+}
+.logo h2 {
+  float: left;
+  line-height: 50px;
+  margin: 0 0 0 10px;
+  font-size: 24px;
+}
+
+form h4 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: .25em;
+}
+
+#map {
+  height: 400px;
+}
+
+.messages-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+.messages-header .new {
+  background: orange;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.message {
+  margin-bottom: 50px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.message h5 {
+  display: inline-block;
+  margin: 0;
+}
+.message h5 + h5 {
+  margin-left: 20px;
+}
+.message h4 {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+.message p {
+  margin: 0;
+}
+
+.message-new {
+  background: #ffd280;
+}
+.message-new h4 {
+  border-color: black;
+}
+
+.btn-default {
+  margin-bottom: 20px;
+}
+
+.form-middle {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  overflow: hidden;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.btn {
+  background: #333;
+  color: #fff;
+  border-radius: 0;
+}
+
+.register-mode label {
+  border: 1px solid #ccc;
+  font-weight: lighter;
+  width: 95%;
+  margin: 15px auto 0;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#messageForm textarea {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  resize: none;
+}
+
+.profile-data {
+  padding-top: 50px;
+}
