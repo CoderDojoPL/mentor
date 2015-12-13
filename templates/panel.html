@@ -100,12 +100,12 @@
                         <th>Miejscowość</th>
                         <th>Potencjalni mentorzy</th>
                     </tr>
-                    {{% for place in places %}}
+                    {% for place in places %}
                     <tr>
-                        <td>place['Miejscowosc']</td>
-                        <td>place['liczba_uspionych']</td>
+                        <td>{{  place['Miejscowosc'] }} </td>
+                        <td>{{ place['liczba_uspionych']}}</td>
                     </tr>
-                    {{% endfor %}}
+                    {% endfor %}
                 </table>
             </div>
         </div> <!-- /.row -->

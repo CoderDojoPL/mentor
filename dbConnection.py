@@ -4,7 +4,7 @@ from flask import url_for
 
 
 def connect_to_database():
-    return sqlite3.connect('/Users/Marcin/PycharmProjects/CoderDojo/database/CoderDojo.db').cursor()
+    return sqlite3.connect('/Users/Marcin/PycharmProjects/CoderDojo/database/CoderDojo.db')
 
 
 def commit(conn):
