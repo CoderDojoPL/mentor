@@ -16,13 +16,11 @@ def add_user(login, email, password, skillsList, czyZdalny, czyPedagog, czyUspio
 
 def does_user_exist(login, password):
     conn = dbConnection.connect_to_database()
-    params = (login, password)
-    if conn.execute("SELECT * FROM user where LOGIN = ? AND PASSWORD = ?", params):
-        dbConnection.commit(conn)
-        return True
-    else:
-        dbConnection.rollback(conn)
-        return False
+    if (login,) in conn.execute("SELECT LOGIN FROM user").fetchall():
+        if password == conn.execute("SELECT PASSWORD FROM user where LOGIN = ?", (login,)).fetchone()[0]:
+            return True
+        else:
+            return False
 
 
 def delete_user(login, password):
@@ -46,3 +44,5 @@ def find_user_id_by_login(login):
     else:
         dbConnection.rollback(conn)
         return None
+
+does_user_exist("asda", "asgsfa")
