@@ -1,4 +1,5 @@
 import dbConnection
+import userUmiejetnoscDAO
 
 
 def add_user(status, login, email, password, passwordRepeat, skillsList, remoteExperienceList, miejscowosc):
@@ -51,6 +52,5 @@ def delete_user(login, password):
             return False
 
 
-add_user()
-does_user_exist("aa", "aa")
-delete_user("aa", "aa")
+add_user("sleep", "revenant", "adrian.michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('remote'), "Warszawa")
+add_user("join", "revenantq", "adrian_michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('experience'), "Warszawa")

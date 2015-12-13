@@ -2,7 +2,7 @@ import sqlite3
 
 
 def connect_to_database():
-    return sqlite3.connect('database/CoderDojo.db')
+    return sqlite3.connect('database/Cfajo.db')
 
 
 def commit(conn):

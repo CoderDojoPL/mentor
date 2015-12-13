@@ -24,5 +24,15 @@ def remove_umiejetnosc(umiejetnoscId):
 def add_umiejetnosci(umiejetnosciNazwy):
     conn = dbConnection.connect_to_database()
     for umiejetnoscNazwa in umiejetnosciNazwy:
-        conn.execute("INSERT INTO sl_umiejetnosci (NAZWA) VALUE (?)", umiejetnoscNazwa)
+        conn.execute("INSERT INTO sl_umiejetnosci (NAZWA) VALUES (?)", (umiejetnoscNazwa,))
     dbConnection.commit(conn)
+
+
+def get_umiejetnosc_id_tuple(umiejetnosciNazwy):
+    conn = dbConnection.connect_to_database()
+    id_tuple = ()
+    for umiejetnoscNazwa in umiejetnosciNazwy:
+        id = conn.execute("SELECT ID FROM sl_umiejetnosci WHERE NAZWA is ?", (umiejetnoscNazwa,))
+        id_tuple += (id, )
+    dbConnection.commit(conn)
+    return id_tuple
