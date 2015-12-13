@@ -24,8 +24,8 @@ def rejestruj_uzytkownika_controller(form):
         if 'experience' in dict(form).keys():
             del form['experience']
             czyPedagog = 1
-        miejscowosc = form['miejscowosc']
-        del form['miejscowosc']
+        miejscowosc = form['location']
+        del form['location']
         skillsTuple = ()
         for key in form:
             skillsTuple = skillsTuple + (key,)

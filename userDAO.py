@@ -5,13 +5,11 @@ import dojoUserDAO
 
 def add_user(login, email, password, skillsList, czyZdalny, czyPedagog, czyUspiony, miejscowosc):
     conn = dbConnection.connect_to_database()
-    params = (email, password, login, miejscowosc, czyUspiony, czyZdalny, czyPedagog)
+    params = (email, password, login, miejscowosc[0], czyUspiony, czyZdalny, czyPedagog)
     if conn.execute("INSERT INTO user (EMAIL, PASSWORD, LOGIN, LOKALIZACJA, CZY_USPIONY, CZY_ZDALNY, CZY_PEDAGOG) "
                      "VALUES (?, ?, ?, ?, ?, ?, ?)", params):
         dbConnection.commit(conn)
         userUmiejetnoscDAO.add_relations(login, skillsList)
-        if czyUspiony == 0:
-            dojoUserDAO.add_user_dojo_relation(login, miejscowosc)
         return True
     else:
         dbConnection.rollback(conn)
@@ -74,3 +72,5 @@ def find_miejscowosci_and_liczba_usbionych():
         slownik = {'Miejscowosc': miejscowosc, 'Liczba_uspionych': liczba_uspionych}
         lista_slownikow = lista_slownikow + (slownik,)
     return lista_slownikow
+
+find_miejscowosci_and_liczba_usbionych()
