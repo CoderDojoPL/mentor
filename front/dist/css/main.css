@@ -1,7 +1,8 @@
 header {
   width: 100%;
-  background: darkgray;
+  background: #333;
   height: 60px;
+  color: #fff;
 }
 
 h1 {
@@ -72,4 +73,34 @@ form h4 {
 }
 .message-new h4 {
   border-color: black;
+}
+
+.btn-default {
+  margin-bottom: 20px;
+}
+
+.form-middle {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  overflow: hidden;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.btn {
+  background: #333;
+  color: #fff;
+  border-radius: 0;
+}
+
+.register-mode label {
+  border: 1px solid #ccc;
+  font-weight: lighter;
+  width: 95%;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
 }
