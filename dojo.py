@@ -26,23 +26,16 @@ def index():
 @app.route(app_url + '/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('index.html', app_url = app_url)
+        return render_template('index.html', app_url=app_url)
     if request.method == 'POST':
         login = request.form.get('login')
         password = request.form.get('password')
         if logowanieController.logowanie_controller(login, password):
-
-        with connect_db() as db:
-            get_pass = """SELECT password FROM users WHERE username == '%s'""" % username
-            passwd = db.execute(get_pass)
-            try:
-                if passwd.fetchone()[0] == password:
-                    session['uid'] = uuid4()
-                    session['username'] = username
-                    data = print_urls(db,username=username)
-                    return render_template('login_success.html', username=username, app_url=app_url, data=data)
-            except TypeError:
-                return render_template('login.html', app_url=app_url)
+            session['uid'] = uuid4()
+            session['username'] = login
+            return render_template('login_success.html', username=login, app_url=app_url)
+        else:
+            return render_template('login.html', app_url=app_url)
 
 
 @app.route(app_url + '/logout', methods=['GET', 'POST'])

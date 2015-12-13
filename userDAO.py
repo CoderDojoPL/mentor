@@ -5,7 +5,7 @@ import userUmiejetnoscDAO
 def add_user(login, email, password, skillsList, czyZdalny, czyPedagog, czyUspiony, miejscowosc):
     conn = dbConnection.connect_to_database()
     params = (email, password, login, miejscowosc, czyUspiony, czyZdalny, czyPedagog)
-    if conn.execute("INSERT INTO user (EMAIL, PASSWORD, LOGIN, LOKLIZACJA, CZY_USPIONY, CZY_ZDALNY, CZY_PEDAGOG) "
+    if conn.execute("INSERT INTO user (EMAIL, PASSWORD, LOGIN, LOKALIZACJA, CZY_USPIONY, CZY_ZDALNY, CZY_PEDAGOG) "
                      "VALUES (?, ?, ?, ?, ?, ?, ?)", params):
         dbConnection.commit(conn)
         return True
@@ -46,7 +46,3 @@ def find_user_id_by_login(login):
     else:
         dbConnection.rollback(conn)
         return None
-
-
-add_user("sleep", "revenant", "adrian.michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('remote'), "Warszawa")
-add_user("join", "revenantq", "adrian_michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('experience'), "Warszawa")
