@@ -23,6 +23,15 @@ $(document).ready(function() {
 		output.push(info);
 
 		console.log(output);
-		$.post('/register',output);
+
+		$.post('/register', output);
 	});
+
+/*	$("#loginForm").submit(function (event) {
+		event.preventDefault();
+
+		var output = $(this).serializeArray();
+
+		console.log(output);
+	});*/
 });

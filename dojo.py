@@ -20,23 +20,30 @@ def index():
     if 'username' not in session:
         return redirect(app_url + '/login', code=302)
     username = session['username']
-    return render_template('login_success.html', username=username, app_url=app_url)
+    return render_template('login.html', username=username, app_url=app_url)
 
 
 @app.route(app_url + '/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('index.html', app_url=app_url)
+        return render_template('login.html', app_url=app_url)
     if request.method == 'POST':
         login = request.form.get('login')
         password = request.form.get('password')
         if logowanieController.logowanie_controller(login, password):
+            print "udalo sie zalogowac"
             session['uid'] = uuid4()
             session['username'] = login
-            return render_template('login_success.html', username=login, app_url=app_url)
+            return redirect('/panel', code=300)
+                #render_template('panel.html', username=login, app_url=app_url)
         else:
+            print "nie udalo sie"
             return render_template('login.html', app_url=app_url)
 
+
+@app.route(app_url + '/panel', methods=['GET', 'POST'])
+def panel():
+    return render_template('panel.html', username=login, app_url=app_url)
 
 @app.route(app_url + '/logout', methods=['GET', 'POST'])
 def logout():
@@ -44,24 +51,14 @@ def logout():
     return redirect(app_url + '/login', code=302)
 
 
-
 @app.route(app_url + '/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
-        return render_template('register_form.html', app_url=app_url)
+        return render_template('index.html', app_url=app_url)
     if request.method == 'POST':
         read = dict(request.form)
         rejestracjaController.rejestruj_uzytkownika_controller(read)
         return redirect(app_url + '/login', code=302)
-
-
-@app.route(app_url + '/messages', methods=['GET', 'POST'])
-def messages():
-    messages = []
-    messages.append({'title':'first message','content':'this is content','button':'http://google.pl'})
-    for message in messages:
-        print(message['title'])
-    return render_template('messages.html', messages=messages)
 
 
 if __name__ == '__main__':
