@@ -23,5 +23,6 @@ $(document).ready(function() {
 		output.push(info);
 
 		console.log(output);
+		$.post('0.0.0.0:4000/register',output);
 	});
 });
