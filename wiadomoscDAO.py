@@ -2,11 +2,11 @@ import datetime
 import dbConnection
 
 
-def add_wiadomosc(nadawcaId, odbiorcaId, tresc):
+def add_wiadomosc(nadawcaId, odbiorcaId, tresc, temat):
     conn = dbConnection.connect_to_database()
     czyPrzeczytany = 0
-    if conn.execute("INSERT INTO wiadomosc (NADAWCA_ID, ODBIORCA_ID, TRESC, CZY_PRZECZYTANY, DATA_WYSLANIA) "
-                    "VALUES (?, ?, ?, ?, ?)", nadawcaId, odbiorcaId, tresc,
+    if conn.execute("INSERT INTO wiadomosc (NADAWCA_ID, ODBIORCA_ID, TEMAT, TRESC, CZY_PRZECZYTANY, DATA_WYSLANIA) "
+                    "VALUES (?, ?, ?, ?, ?, ?)", nadawcaId, odbiorcaId, temat, tresc,
                     czyPrzeczytany, datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')):
         dbConnection.commit(conn)
         return True

@@ -37,5 +37,16 @@ def delete_user(login, password):
             return False
 
 
+def find_user_id_by_login(login):
+    conn = dbConnection.connect_to_database()
+    id = conn.execute("SELECT id FROM user where LOGIN = ? AND PASSWORD = ?", (login,))
+    if id is not None:
+        dbConnection.commit(conn)
+        return id
+    else:
+        dbConnection.rollback(conn)
+        return None
+
+
 add_user("sleep", "revenant", "adrian.michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('remote'), "Warszawa")
 add_user("join", "revenantq", "adrian_michalik@wp.pl", "adrian", "adrian", ('skill1', 'skill2'), ('experience'), "Warszawa")
