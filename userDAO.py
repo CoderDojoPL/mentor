@@ -2,31 +2,16 @@ import dbConnection
 import userUmiejetnoscDAO
 
 
-def add_user(status, login, email, password, passwordRepeat, skillsList, remoteExperienceList, miejscowosc):
+def add_user(login, email, password, skillsList, czyZdalny, czyPedagog, czyUspiony, miejscowosc):
     conn = dbConnection.connect_to_database()
-    czyZdalny = 0
-    czyPedagog = 0
-    if status is "join":
-        czyUspiony = 0
-    elif status is "sleep":
-        czyUspiony = 1
-    else:
-        return False
-    if password is passwordRepeat:
-        if "remote" in remoteExperienceList:
-            czyZdalny = 1
-        elif "experience" in remoteExperienceList:
-            czyPedagog = 1
-        else:
-            return False
-        params = (email, password, login, miejscowosc, czyUspiony, czyZdalny, czyPedagog)
-        if conn.execute("INSERT INTO user (EMAIL, PASSWORD, LOGIN, LOKLIZACJA, CZY_USPIONY, CZY_ZDALNY, CZY_PEDAGOG) "
+    params = (email, password, login, miejscowosc, czyUspiony, czyZdalny, czyPedagog)
+    if conn.execute("INSERT INTO user (EMAIL, PASSWORD, LOGIN, LOKLIZACJA, CZY_USPIONY, CZY_ZDALNY, CZY_PEDAGOG) "
                      "VALUES (?, ?, ?, ?, ?, ?, ?)", params):
-            dbConnection.commit(conn)
-            return True
-        else:
-            dbConnection.rollback(conn)
-            return False
+        dbConnection.commit(conn)
+        return True
+    else:
+        dbConnection.rollback(conn)
+        return False
 
 
 def does_user_exist(login, password):

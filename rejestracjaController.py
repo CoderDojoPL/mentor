@@ -18,5 +18,7 @@ def rejestruj_uzytkownika_controller(form):
             if "experience" in form[6]:
                 czyPedagog = 1
         miejscowosc = form[7]
+        if userDAO.add_user(login, email, password, skillsList, remote, czyPedagog, sleep, miejscowosc):
+            return True
     else:
         return False
