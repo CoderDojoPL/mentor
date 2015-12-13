@@ -104,3 +104,10 @@ form h4 {
   text-align: center;
   cursor: pointer;
 }
+
+#messageForm textarea {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  resize: none;
+}
