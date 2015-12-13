@@ -111,3 +111,7 @@ form h4 {
   margin: 10px 0;
   resize: none;
 }
+
+.profile-data {
+  padding-top: 50px;
+}

@@ -25,11 +25,11 @@ $(document).ready(function() {
 		console.log(output);
 	});
 
-	$("#loginForm").submit(function (event) {
+/*	$("#loginForm").submit(function (event) {
 		event.preventDefault();
 
 		var output = $(this).serializeArray();
 
 		console.log(output);
-	});
+	});*/
 });
