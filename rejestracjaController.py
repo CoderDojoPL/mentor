@@ -7,8 +7,8 @@ def rejestruj_uzytkownika_controller(form):
             del form['undefined']
         sleep = 1
         if form['registerMode'][0] == "join":
-            del form['registerMode']
             sleep = 0
+        del form['registerMode']
         login = form['login'][0]
         del form['login']
         email = form['email'][0]
@@ -24,12 +24,13 @@ def rejestruj_uzytkownika_controller(form):
         if 'experience' in dict(form).keys():
             del form['experience']
             czyPedagog = 1
+        miejscowosc = form['miejscowosc']
+        del form['miejscowosc']
         skillsTuple = ()
         for key in form:
             skillsTuple = skillsTuple + (key,)
-        # miejscowosc = form[7]
         # if userDAO.add_user(login, email, password, skillsList, remote, czyPedagog, sleep, miejscowosc):
-        if userDAO.add_user(login, email, password, skillsTuple, remote, czyPedagog, sleep, "Warszawa"):
+        if userDAO.add_user(login, email, password, skillsTuple, remote, czyPedagog, sleep, miejscowosc):
             return True
     else:
         return False

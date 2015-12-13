@@ -41,7 +41,10 @@ def login():
 
 @app.route(app_url + '/panel', methods=['GET', 'POST'])
 def panel():
-    return render_template('panel.html', username=login, app_url=app_url)
+    if request.method == "GET":
+        return render_template('panel.html', username=login, app_url=app_url)
+    if request.method == "POST":
+        return render_template('panel.html', username=login, app_url=app_url)
 
 @app.route(app_url + '/logout', methods=['GET', 'POST'])
 def logout():

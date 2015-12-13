@@ -1,4 +1,5 @@
 import dbConnection
+import sqlite3
 
 
 def add_umiejetnosc(umiejetnoscNazwa):
@@ -32,7 +33,7 @@ def get_umiejetnosc_id_tuple(umiejetnosciNazwy):
     conn = dbConnection.connect_to_database()
     id_tuple = ()
     for umiejetnoscNazwa in umiejetnosciNazwy:
-        id = conn.execute("SELECT ID FROM sl_umiejetnosci WHERE NAZWA is ?", (umiejetnoscNazwa,))
+        id = conn.cursor().execute("SELECT ID FROM sl_umiejetnosci WHERE NAZWA = ?", (umiejetnoscNazwa,)).fetchone()[0]
         id_tuple += (id, )
     dbConnection.commit(conn)
     return id_tuple

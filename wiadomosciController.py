@@ -27,3 +27,7 @@ def markuj_wiadomosc_przeczytana(form):
 
 def get_ilosc_nieprzeczytanych_wiadomosci(odbiorcaLogin):
     return wiadomoscDAO.get_ilosc_nieprzeczytanych(odbiorcaLogin)
+
+
+def get_nieprzeczytane_wiadomosci(odbiorcaLogin):
+    return wiadomoscDAO.get_wiadomosci_by_odbiorca_login(odbiorcaLogin)

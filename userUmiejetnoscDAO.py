@@ -4,8 +4,10 @@ import slUmiejetnosciDAO
 
 def add_relations(userLogin, umiejetnosciNames):
     conn = dbConnection.connect_to_database()
-    userId = conn.execute("SELECT ID FROM USER WHERE LOGIN = ?", (userLogin,))
+    userId = conn.cursor().execute("SELECT ID FROM USER WHERE LOGIN = ?", (userLogin,)).fetchone()[0]
+    dbConnection.commit(conn)
     idTuple = slUmiejetnosciDAO.get_umiejetnosc_id_tuple(umiejetnosciNames)
+    conn = dbConnection.connect_to_database()
     for umiejetnoscId in idTuple:
         params = (userId, umiejetnoscId)
         conn.execute("INSERT INTO user_umiejetnosc VALUES (?, ?)", params)

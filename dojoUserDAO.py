@@ -1,8 +1,10 @@
 import dbConnection
 
 
-def add_user_dojo_relation(userId, dojoId):
+def add_user_dojo_relation(userLogin, miejscowosc):
     conn = dbConnection.connect_to_database()
+    userId = conn.cursor().execute("SELECT ID FROM USER WHERE LOGIN = ?", (userLogin,)).fetchone()[0]
+    dojoId = conn.cursor().execute("SELECT ID FROM dojo WHERE LOKALIZACJA = ?", (miejscowosc,)).fetchone()[0]
     params = (dojoId, userId)
     if conn.execute("INSERT INTO dojo_user VALUES (?, ?)", params):
         ilosc_mentorow = conn.execute("SELECT IL_MENTOROW FROM dojo WHERE ID = ?", dojoId)

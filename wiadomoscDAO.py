@@ -39,3 +39,11 @@ def get_ilosc_nieprzeczytanych(odbiorcaLogin):
         if ilosc_nieprzeczytanych is not None:
             return ilosc_nieprzeczytanych
     return None
+
+
+def get_wiadomosci_by_odbiorca_login(odbiorcaLogin):
+    odbiorcaId = userDAO.find_user_id_by_login(odbiorcaLogin)
+    if odbiorcaId is not None:
+        conn = dbConnection.connect_to_database()
+        listaWiadomosci = conn.cursor().execute("SELECT * FROM wiadomosc WHERE ODBIORCA_ID = ?", (odbiorcaId,)).fetchall()
+        return listaWiadomosci
