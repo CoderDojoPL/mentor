@@ -1,5 +1,6 @@
 import datetime
 import dbConnection
+import userDAO
 
 
 def add_wiadomosc(nadawcaId, odbiorcaId, tresc, temat):
@@ -28,3 +29,13 @@ def set_wiadomosc_czy_przeczytany(wiadomoscId, czyPrzeczytany):
     else:
         dbConnection.rollback(conn)
         return False
+
+
+def get_ilosc_nieprzeczytanych(odbiorcaLogin):
+    odbiorcaId = userDAO.find_user_id_by_login(odbiorcaLogin)
+    if odbiorcaId is not None:
+        conn = dbConnection.connect_to_database()
+        ilosc_nieprzeczytanych = conn.execute("SELECT COUNT(liczba) FROM wiadomosc where ODBIORCA_ID = ? AND CZY_PRZECZYTANY = 0", (odbiorcaId,))
+        if ilosc_nieprzeczytanych is not None:
+            return ilosc_nieprzeczytanych
+    return None
