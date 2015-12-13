@@ -24,7 +24,13 @@ $(document).ready(function() {
 
 		console.log(output);
 
-		$.post('/register', output);
+		$.post(
+			'/register',
+			output,
+			function(){
+				window.location.replace("/login")
+			}
+		);
 	});
 
 /*	$("#loginForm").submit(function (event) {
